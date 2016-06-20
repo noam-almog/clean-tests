@@ -1,7 +1,6 @@
 package com.wix.example
 
 import com.wix.example.CachePolicyTestInterfaces.TestInterface
-import com.wix.example.CachePolicyType._
 import org.specs2.matcher.ThrownExpectations
 import org.specs2.mock.Mockito
 import org.specs2.mutable.SpecWithJUnit
