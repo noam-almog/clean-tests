@@ -1,6 +1,7 @@
 package com.wix.example
 
 import com.wix.example.CachePolicyTestInterfaces.TestInterface
+import com.wix.example.CachePolicyType.SpecificAge
 import org.specs2.matcher.ThrownExpectations
 import org.specs2.mock.Mockito
 import org.specs2.mutable.SpecWithJUnit
@@ -30,14 +31,14 @@ class CachePolicyManagerTest extends SpecWithJUnit {
     }
 
     "given specific age annotation, return cache headers with time" in new ctx {
-      cachePolicyAnnotationExtractor.cachePolicyFrom(method) returns Some(CachePolicyData(CachePolicyType.SpecificAge, maxAge))
+      cachePolicyAnnotationExtractor.cachePolicyFrom(method) returns Some(CachePolicyData(SpecificAge, maxAge))
 
       cachePolicyManager.cachePolicyHeadersFor(method) must
         containTheSameElementsAs(Seq("Cache-Control" -> s"max-age=$maxAge"))
     }
 
     "for invalid max age throw an illegal argument exception" in new ctx {
-      cachePolicyAnnotationExtractor.cachePolicyFrom(method) returns Some(CachePolicyData(CachePolicyType.SpecificAge, -1))
+      cachePolicyAnnotationExtractor.cachePolicyFrom(method) returns Some(CachePolicyData(SpecificAge, -1))
 
       cachePolicyManager.cachePolicyHeadersFor(method) must throwAn[IllegalArgumentException]
     }
