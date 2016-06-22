@@ -9,9 +9,11 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <specs2.version>3.8.3</specs2.version>
-        <scala.version>2.11</scala.version>
-        <scala.library.version>2.11.8</scala.library.version>
+        <scala.version>2.12.0-M4</scala.version>
         <spring.version>4.0.0.RELEASE</spring.version>
     </properties>
 
@@ -25,7 +27,7 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>${scala.library.version}</version>
+            <version>${scala.version}</version>
         </dependency>
         <dependency>
             <groupId>org.specs2</groupId>
@@ -164,18 +166,17 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
                 <configuration>
                     <args>
+                        <arg>-Yopt:l:classpath</arg>
+
                         <arg>-deprecation</arg>
                         <arg>-feature</arg>
                         <arg>-Xmax-classfile-name</arg>
