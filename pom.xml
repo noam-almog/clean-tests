@@ -11,19 +11,21 @@
     <properties>
         <specs2.version>3.8.3</specs2.version>
         <scala.version>2.11</scala.version>
+        <scala.library.version>2.11.8</scala.library.version>
+        <spring.version>4.0.0.RELEASE</spring.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.11.6</version>
+            <version>${scala.library.version}</version>
         </dependency>
         <dependency>
             <groupId>org.specs2</groupId>

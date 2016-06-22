@@ -26,10 +26,12 @@ trait CachePolicyAnnotationExtractor {
 
 class SpringAnnotationUtilsCachePolicyAnnotationExtractor extends CachePolicyAnnotationExtractor {
   def cachePolicyFrom(method: Method) =
-    Option( AnnotationUtils.getAnnotation(method, classOf[CachePolicy]) )
-      .orElse( Option( AnnotationUtils.getAnnotation(method.getDeclaringClass, classOf[CachePolicy]) ) )
+    extractAnnotationFrom(method)
         .map( a => CachePolicyData(a.value, a.cacheAgeInSeconds))
 
+  private def extractAnnotationFrom(method: Method): Option[CachePolicy] =
+    Option( AnnotationUtils.getAnnotation(method, classOf[CachePolicy]) )
+      .orElse( Option( AnnotationUtils.getAnnotation(method.getDeclaringClass, classOf[CachePolicy]) ) )
 }
 
 case class CachePolicyData(cachePolicyType: CachePolicyType, maxAge: Int)
