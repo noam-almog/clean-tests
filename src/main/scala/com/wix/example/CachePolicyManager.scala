@@ -10,13 +10,13 @@ trait CachePolicyManager {
 
 class AnnotationBasedCachePolicyManager(cachePolicyAnnotationExtractor: CachePolicyAnnotationExtractor)
   extends CachePolicyManager {
+
   def cachePolicyHeadersFor(method: Method) =
     cachePolicyAnnotationExtractor.cachePolicyFrom(method) match {
       case Some(CachePolicyData(_, maxAge)) if maxAge <= 0 => throw new IllegalArgumentException
       case Some(CachePolicyData(_, maxAge)) => Seq("Cache-Control" -> s"max-age=$maxAge")
       case _ => Seq("Cache-Control" -> "no-cache",
                     "Pragma" -> "no-cache")
-
     }
 }
 
